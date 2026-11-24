@@ -25,6 +25,8 @@ def build_bio() -> str:
     line = " ".join(BIO.split())
     if not line:
         raise ValueError("bio is empty")
+    if "\n" in line or "\r" in line:
+        raise ValueError("bio must be exactly one line")
     if len(line) > LIMIT:
         raise ValueError(f"bio is {len(line)} chars, over the {LIMIT} limit")
     return line
